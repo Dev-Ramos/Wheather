@@ -13,7 +13,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body>
+      <body style={{
+        backgroundImage: "url('https://png.pngtree.com/background/20221224/original/pngtree-gradient-smudged-cloud-sky-picture-image_1986612.jpg')"
+        , backgroundSize: "cover"
+        , backgroundPosition: "center"
+      }}>
         {children}
       </body>
     </html>

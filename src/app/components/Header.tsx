@@ -2,27 +2,35 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Search, Sun, Moon } from "lucide-react"
-import { useState } from "react"
+import { useState, useRef } from "react"
 
 const Header = () => {
   const [darkMode, setDarkMode] = useState(false)
   const [temperatureUnit, setTemperatureUnit] = useState('C°')
+  const inputRef = useRef<HTMLInputElement>(null)
   const toggleTheme = () => {
     setDarkMode((prev)=> !prev)
   }
   const handleTemperatureUnit = (unit: string) => {
     setTemperatureUnit(unit)
   }
+  const handleSearch = () => {
+    // console.log(inputRef.current?.value);
+  }
+
   return (
     <header className="flex items-center w-screen mx-auto">
         <div className="flex flex-row gap-x-1 justify-self-start">
-          <Input placeholder="Qual sua cidade?" className="w-full"/>
-          <Button variant="outline">
+        <Input placeholder="Qual sua cidade?"
+          className="w-full bg-gray-100"
+          ref={inputRef}/>
+        <Button variant="outline" className="bg-gray-100"
+          onClick={()=>handleSearch()}>
             <Search className="h-2 w-2 hover: cursor-pointer"/>  
           </Button>
         </div>
       <div className="flex flex-row gap-x-2 w-1/5 ml-4">
-        <div className="flex flex-row gap-x-2 items-center justify-center border border-gray-400 py-1 px-2 rounded-sm">
+        <div className="bg-gray-100 flex flex-row gap-x-2 items-center justify-center border border-gray-400 py-1 px-2 rounded-sm">
           <button
             type="button"
             onClick={()=> handleTemperatureUnit('C°')}
@@ -41,7 +49,7 @@ const Header = () => {
           <button
             type="button"
             onClick={toggleTheme}
-            className="text-gray-500 hover:text-gray-900 hover:cursor-pointer border border-gray-400 p-2 rounded-md">
+            className="bg-gray-100 text-gray-500 hover:text-gray-900 hover:cursor-pointer border border-gray-400 p-2 rounded-md">
             <span>
               {darkMode ? <Moon className="h-4 w-4 hover:cursor-pointer"/> : <Sun className="h-4 w-4 hover:cursor-pointer"/>}
             </span>
